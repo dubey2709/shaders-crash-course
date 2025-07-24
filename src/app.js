@@ -9,6 +9,8 @@ import { CopyShader } from 'three/examples/jsm/shaders/CopyShader.js'
 import vertexShader from './shaders/vertex.glsl'
 import fragmentShader from './shaders/fragment.glsl'
 
+import colorfulTexture from './images/image.jpg'
+
 const startApp = () => {
   const scene = useScene()
   const camera = useCamera()
@@ -28,7 +30,7 @@ const startApp = () => {
 
 
 
-
+ // (OpenGL Shading Language) GLSL is a typed language
 
 
 
@@ -36,12 +38,22 @@ const startApp = () => {
 
 
   // meshes
-  const geometry = new THREE.IcosahedronGeometry(1, 5)
-  const material = new THREE.MeshStandardMaterial()
+  const geometry = new THREE.SphereGeometry(1)
+  // console.log(geometry);
+  // Shader Material using some default shaders
+  const material = new THREE.ShaderMaterial({
+    vertexShader: vertexShader,
+    fragmentShader: fragmentShader,
+  })
+
+  const texture = new THREE.TextureLoader().load(colorfulTexture);
+  material.uniforms.uTexture = { value: texture };
+  console.log(material);
 
   const ico = new THREE.Mesh(geometry, material)
   scene.add(ico)
 
+  // ico.position.set(0,0,-5);
 
 
 
