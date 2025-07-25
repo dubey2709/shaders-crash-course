@@ -2,7 +2,7 @@
 // uniform mat4 modelViewMatrix; // we have two matrices modelMatrix and viewMatrrix
 // attribute vec3 position; 
 
-// uniform mat4 modelMatrix;
+// uniform mat4 modelMatrix; // Its an interface variable
 // uniform mat4 viewMatrix;
 
 // (mat4 == mat2X2)
@@ -11,8 +11,16 @@
 // attribute: vertex specific data that we are storing in an array, supported in vertex shader only
 // uniform is same for every single vertex. Its same used across all vertices (also works with fragment shaders)
 
+// Global shared variables
+// Constant across a single draw call
+
 // normals: A normal vector describes the orientation (facing direction) of a vertex or surface — crucial for shading and lighting realism. (Vec3)
 // A normal vector is perpendicular to the surface at a vertex — not the vertex itself and each vertex has a normal
+
+// So we have vertex data, and we want to fill the triangle with values like color or texture. Since we can't determine everything from just 3 vertices
+// directly, the GPU interpolates values across the triangle, and then runs the fragment shader per pixel using those interpolated values.
+
+// Storage Qualifier	A modifier that describes how/where a variable is used
 
 // UVs are 2D coordinates (u, v) that map a texture image onto a 3D model.
 
